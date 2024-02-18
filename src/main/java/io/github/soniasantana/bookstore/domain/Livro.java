@@ -1,5 +1,7 @@
 package io.github.soniasantana.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,6 +14,8 @@ public class Livro implements Serializable {
     private String titulo;
     private String nome_autor;
     private String texto;
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name= "categoria_id")
     private Categoria categoria;
