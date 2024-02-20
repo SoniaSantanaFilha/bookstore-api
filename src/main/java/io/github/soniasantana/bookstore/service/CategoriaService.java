@@ -2,6 +2,7 @@ package io.github.soniasantana.bookstore.service;
 
 import io.github.soniasantana.bookstore.domain.Categoria;
 import io.github.soniasantana.bookstore.repositories.CategoriaRepository;
+import io.github.soniasantana.bookstore.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,6 @@ public class CategoriaService {
 
     public Categoria findById(Integer id) {
         Optional<Categoria> obj = repository.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo:" + Categoria.class.getName()));
     }
 }
