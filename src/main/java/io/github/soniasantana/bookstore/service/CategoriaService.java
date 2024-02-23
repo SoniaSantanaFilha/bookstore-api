@@ -3,9 +3,10 @@ package io.github.soniasantana.bookstore.service;
 import io.github.soniasantana.bookstore.domain.Categoria;
 import io.github.soniasantana.bookstore.dtos.CategoriaDTO;
 import io.github.soniasantana.bookstore.repositories.CategoriaRepository;
+import io.github.soniasantana.bookstore.service.exceptions.DataIntegrityViolationException;
 import io.github.soniasantana.bookstore.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,7 +41,11 @@ public class CategoriaService {
 
     public void delete(Integer id) {
         findById(id);
-        repository.deleteById(id);
+        try {
+           repository.deleteById(id);
+        } catch (org.springframework.dao.DataIntegrityViolationException e) {
+           throw new io.github.soniasantana.bookstore.service.exceptions.DataIntegrityViolationException("Categoria não pode ser deletada! Possui livros associados.");
+        }
     }
 }
 
