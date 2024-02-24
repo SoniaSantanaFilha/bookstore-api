@@ -1,5 +1,6 @@
 package io.github.soniasantana.bookstore.service;
 
+import io.github.soniasantana.bookstore.domain.Categoria;
 import io.github.soniasantana.bookstore.domain.Livro;
 import io.github.soniasantana.bookstore.repositories.LivroRepository;
 import io.github.soniasantana.bookstore.service.exceptions.ObjectNotFoundException;
@@ -38,4 +39,10 @@ public class LivroService {
         newObj.setTexto(obj.getTexto());
     }
 
+    public Livro create(Integer id_cat, Livro obj) {
+        obj.setId(null);
+        Categoria cat = categoriaService.findById(id_cat);
+        obj.setCategoria(cat);
+        return repository.save(obj);
+    }
 }
