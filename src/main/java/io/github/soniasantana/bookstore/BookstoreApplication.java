@@ -1,13 +1,8 @@
 package io.github.soniasantana.bookstore;
 
-import io.github.soniasantana.bookstore.domain.Categoria;
-import io.github.soniasantana.bookstore.domain.Livro;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Arrays;
 
 @SpringBootApplication
 public class BookstoreApplication{
